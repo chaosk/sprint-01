@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block submenu %}
+<a href="{% url task_add %}">Add new task</a>
+{% endblock submenu %}
+
+{% block content %}
+<ul class="tasks">
+{% for task in tasks %}
+	<li>{{ task.title }} - <a href="{% url task_edit task.id %}">edit</a></li>
+{% endfor %}
+</ul>
+{% endblock content %}

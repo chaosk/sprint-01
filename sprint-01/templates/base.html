@@ -29,8 +29,11 @@
 
 		</header>
 
-		<section>
-			<a href="{% url home %}">Home</a>
+		<section id="menu">
+			<a href="{% url home %}">Home</a> <a href="{% url task_list %}">Tasks</a>
+			<div id="submenu">
+				{% block submenu %}{% endblock submenu %}
+			</div>
 		</section>
 
 		{% if messages %}
