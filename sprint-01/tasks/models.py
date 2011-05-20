@@ -10,5 +10,20 @@ class Task(models.Model):
 	is_done = models.BooleanField(default=False)
 	collaborators = models.ManyToManyField(User, related_name="shared_tasks")
 
+	PRIORITY_VERY_LOW = 1
+	PRIORITY_LOW = 2
+	PRIORITY_NORMAL = 3
+	PRIORITY_HIGH = 4
+	PRIORITY_CRITICAL = 5
+	PRIORITY_CHOICES = (
+		(PRIORITY_VERY_LOW, "Very low"),
+		(PRIORITY_LOW, "Low"),
+		(PRIORITY_NORMAL, "Normal"),
+		(PRIORITY_HIGH, "High"),
+		(PRIORITY_CRITICAL, "Critical"),
+	)
+	priority = models.IntegerField(choices=PRIORITY_CHOICES,
+		default=PRIORITY_NORMAL)
+
 	def __unicode__(self):
 		return self.title
