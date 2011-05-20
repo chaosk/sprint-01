@@ -66,6 +66,7 @@ def task_edit(request, task_id):
 			return redirect(reverse('task_list'))
 
 	return {
+		'task': task,
 		'form': form,
 		'TEMPLATE': template,
 	}
