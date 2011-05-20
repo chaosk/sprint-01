@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.http import Http404
 from tasks.forms import NewTaskForm, EditTaskForm, EditSharedTaskForm
 from tasks.models import Task
 from annoying.decorators import render_to
@@ -43,12 +44,14 @@ def task_add(request):
 def task_edit(request, task_id):
 	task = get_object_or_404(Task, pk=task_id)
 
-	if request.user in task.collaborators.all():
-		form_name = EditSharedTaskForm
-		template = 'tasks/edit_shared.html'
-	elif task.created_by == request.user:
+	if task.created_by == request.user:
 		form_name = EditTaskForm
 		template = 'tasks/edit.html'
+	elif request.user in task.collaborators.all():
+		form_name = EditSharedTaskForm
+		template = 'tasks/edit_shared.html'
+	else:
+		raise Http404
 
 	form = form_name(instance=task)
 
