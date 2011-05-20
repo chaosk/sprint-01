@@ -12,6 +12,14 @@
 
 <body>
 
+	<div class="userbox">
+		{% if request.user.is_authenticated %}
+		Welcome, <span>{{ request.user }}</span>! <a href="{% url logout %}">Logout</a>
+		{% else %}
+		<a href="{% url login %}">Login</a> <a href="{% url register %}">Register</a>
+		{% endif %}
+	</div>
+
 	<div class="page home">
 
 		<header>
@@ -22,13 +30,18 @@
 		</header>
 
 		<section>
-			<a href="{% url home %}">home</a>
-			{% if request.user.is_authenticated %}
-			Welcome, {{ request.user }}! <a href="{% url logout %}">logout</a>
-			{% else %}
-			</a><a href="{% url login %}">login</a> <a href="{% url register %}">register</a>
-			{% endif %}
+			<a href="{% url home %}">Home</a>
 		</section>
+
+		{% if messages %}
+		<section id="messages">
+			{% for message in messages %}
+			<div{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+				<p>{{ message|safe }}</p>
+			</div>
+			{% endfor %}
+		</section>
+		{% endif %}
 
 		<div id="content">
 			{% block content %}{% endblock content %}
