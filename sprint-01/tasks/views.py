@@ -12,7 +12,7 @@ from annoying.decorators import render_to
 @login_required
 def task_list(request):
 	user = request.user
-	tasks = Task.objects.filter(
+	tasks = Task.objects.exclude(is_done=True).filter(
 		Q(created_by=user) | Q(collaborators__id=user.id)
 	)
 
