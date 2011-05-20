@@ -7,7 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
 	url(r'^$', 'django.views.generic.simple.direct_to_template',
 		{'template': 'static/home.html'}, name='home'),
-	(r'^', include('accounts.urls')),
+	(r'^accounts/', include('accounts.urls')),
 	(r'^tasks/', include('tasks.urls')),
 )
 
