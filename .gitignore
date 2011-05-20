@@ -1,0 +1,12 @@
+*.DS_Store
+*~
+*.pyc
+*.pem
+*.sqlite
+*.svn*
+*.tmproj
+*.directory
+sprint-01/settings_local.py
+build/
+pip-log.txt
+src/
