@@ -155,10 +155,12 @@ ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
 	os.path.join(PROJECT_DIR, 'templates'),
+	os.path.join(PROJECT_DIR, 'templates/piston'),
 )
 
 OUR_APPS = (
 	'accounts',
+	'api',
 	'tasks',
 )
 
