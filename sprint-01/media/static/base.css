@@ -1,3 +1,36 @@
 body {
 	font-family: 'Droid Sans', sans-serif;
 }
+
+h1, h2 {
+	font-family: 'Droid Serif', serif;
+	font-weight: normal;
+	margin: 0;
+}
+
+h1 {
+	font-size: 48px;
+}
+
+h2 {
+	font-size: 18px;
+}
+
+h2, footer {
+	color: #666;
+}
+
+header, footer {
+	text-align: center;
+}
+
+footer {
+	font-size: 10px;
+}
+
+.page {
+	width: 960px;
+	padding: 20px;
+	margin: 20px auto;
+	overflow: hidden;
+}

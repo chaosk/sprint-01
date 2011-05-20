@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+	<title>{% block title %}sprint-01{% endblock title %}</title>
+	<meta charset="utf-8">
+	<link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Serif" rel="stylesheet" type="text/css">
+	<link href="{{ STATIC_URL }}base.css" rel="stylesheet" type="text/css">
+	{% block extra_head %}
+	{% endblock extra_head %}
+</head>
+
+<body>
+
+	<div class="page home">
+
+		<header>
+
+			<h1>sprint-01</h1>
+			<h2>Simple task management application written in Django.</h2>
+
+		</header>
+
+		{% block content %}{% endblock content %}
+
+		<footer>2011</footer>
+
+	</div>
+
+</body>
+
+</html>
