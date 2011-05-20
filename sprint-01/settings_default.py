@@ -159,6 +159,7 @@ TEMPLATE_DIRS = (
 
 OUR_APPS = (
 	'accounts',
+	'tasks',
 )
 
 INSTALLED_APPS = (
