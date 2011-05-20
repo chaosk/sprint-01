@@ -5,4 +5,5 @@ import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
+	(r'^', include('accounts.urls')),
 )
