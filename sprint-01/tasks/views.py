@@ -30,7 +30,10 @@ def task_add(request):
 	if request.method == 'POST':
 		form = NewTaskForm(request.POST)
 		if form.is_valid():
-			new_task = form.save()
+			new_task = form.save(commit=False)
+			new_task.created_by = request.user
+			new_task.save()
+			form.save_m2m()
 			messages.success(request, "Task \"{0}\" created.".format(new_task))
 			return redirect(reverse('task_list'))
 
