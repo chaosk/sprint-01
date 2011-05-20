@@ -21,6 +21,14 @@
 
 		</header>
 
+		<section>
+			{% if request.user.is_authenticated %}
+			Welcome, {{ request.user }}! <a href="{% url logout %}">logout</a>
+			{% else %}
+			<a href="{% url login %}">login</a>
+			{% endif %}
+		</section>
+
 		<div id="content">
 			{% block content %}{% endblock content %}
 		</div>
