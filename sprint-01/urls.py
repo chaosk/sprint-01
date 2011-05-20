@@ -9,3 +9,9 @@ urlpatterns = patterns('',
 		{'template': 'static/home.html'}, name='home'),
 	(r'^', include('accounts.urls')),
 )
+
+if settings.DEBUG:
+	urlpatterns += patterns('',
+		(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+			{'document_root': settings.MEDIA_ROOT}),
+	)
