@@ -1,17 +1,12 @@
-from datetime import timedelta
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth import (authenticate, login as auth_login,
 	logout as auth_logout)
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
-from django.http import Http404, HttpResponse
-from django.utils import simplejson
-from django.views.generic.list_detail import object_list
 from accounts.forms import LoginForm, RegisterForm
 from annoying.decorators import render_to
+from annoying.functions import get_config
 
 
 @render_to('accounts/login.html')
@@ -53,12 +48,10 @@ def register(request):
 	if request.user.is_authenticated():
 		return redirect(reverse('home'))
 
-	next_uri = request.REQUEST.get('next',
-		get_config('FIRST_LOGIN_REDIRECT_URL', reverse('first_steps')))
+	next_uri = request.REQUEST.get('next', reverse('home'))
 	# rescuing poor users from infinite redirection loop
 	if next_uri == get_config('LOGIN_URL', reverse('login')):
-		next_uri = get_config('FIRST_LOGIN_REDIRECT_URL',
-			reverse('first_steps'))
+		next_uri = reverse('home')
 
 	register_form = RegisterForm()
 
