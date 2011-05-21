@@ -45,7 +45,7 @@ def task_add(request):
 @render_to()
 @login_required
 def task_edit(request, task_id):
-	task = get_object_or_404(Task, pk=task_id)
+	task = get_object_or_404(Task.objects.select_related(), pk=task_id)
 
 	if task.created_by == request.user:
 		form_name = EditTaskForm
@@ -69,4 +69,21 @@ def task_edit(request, task_id):
 		'task': task,
 		'form': form,
 		'TEMPLATE': template,
+	}
+
+
+@render_to('tasks/detail.html')
+@login_required
+def task_detail(request, task_id):
+	user = request.user
+	try:
+		task = Task.objects.select_related().get(
+			Q(pk=task_id),
+			Q(created_by=user) | Q(collaborators__id=user.id)
+		)
+	except Task.DoesNotExist:
+		raise Http404
+
+	return {
+		'task': task,
 	}
