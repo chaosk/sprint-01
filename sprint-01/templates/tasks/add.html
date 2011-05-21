@@ -13,9 +13,9 @@
 <option value="5">Critical</option>
 </select></p>
 <p><label for="id_due_to">Due to:</label> <input min="{% now "Y-m-d" %}" value="{% now "Y-m-d" %}" type="date" name="due_to" id="id_due_to" /></p>
-<p><label for="id_collaborators">Collaborators:</label> <select multiple="multiple" name="collaborators" id="id_collaborators">
-<option value="1">robert</option>
-</select> <span class="helptext">Hold down "Control", or "Command" on a Mac, to select more than one.</span></p>
+<p><label for="id_collaborators">{{ form.collaborators.label }}:</label>
+{{ form.collaborators }}
+<span class="helptext">{{ form.collaborators.help_text }}</span></p>
 	<input type="submit">
 </form>
 {% endblock content %}
