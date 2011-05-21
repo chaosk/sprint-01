@@ -50,7 +50,7 @@ form {
 		cursor: pointer;
 	}
 
-	form input {
+	form input, form select {
 		width: 65%;
 	}
 
@@ -61,6 +61,7 @@ form {
 	form .helptext {
 		color: #c66;
 		font-size: 10px;
+		display: block;
 	}
 
 .page {
