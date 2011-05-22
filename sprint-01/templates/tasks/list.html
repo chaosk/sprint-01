@@ -5,9 +5,23 @@
 {% endblock submenu %}
 
 {% block content %}
+<h2>Task list</h2>
 <ul class="tasks">
 {% for task in tasks %}
-	<li>{{ task.title }} - <a href="{% url task_edit task.id %}">edit</a></li>
+	<li class="priority-{{ task.priority }}">
+		<a href="{% url task_edit task.id %}"><img src="{{ STATIC_URL }}images/accessories-text-editor.png" alt="edit" title="Edit"></a>
+		<a href="{% url task_detail task.id %}">
+			<span class="title">{{ task.title }}</span>
+			<span class="desc">{{ task.description|truncatewords:"5" }}</span>
+		</a>
+		{% if task.due_to %}
+			{% if task.due_to|timeuntil != "0 minutes" %}
+				<span class="due_to" title="{{ task.due_to }}">in {{ task.due_to|timeuntil }}</span>
+			{% else %}
+				<span class="due_to past" title="{{ task.due_to }}">{{ task.due_to|timesince }} ago</span>
+			{% endif %}
+		{% endif %}
+	</li>
 {% endfor %}
 </ul>
 {% endblock content %}

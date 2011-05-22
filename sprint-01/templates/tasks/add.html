@@ -12,7 +12,7 @@
 <option value="4">High</option>
 <option value="5">Critical</option>
 </select></p>
-<p><label for="id_due_to">Due to:</label> <input min="{% now "Y-m-d" %}" value="{% now "Y-m-d" %}" type="date" name="due_to" id="id_due_to" /></p>
+<p><label for="id_due_to">Due to:</label> <input min="{% now "Y-m-d" %}" type="date" name="due_to" id="id_due_to" /></p>
 <p><label for="id_collaborators">{{ form.collaborators.label }}:</label>
 {{ form.collaborators }}
 <span class="helptext">{{ form.collaborators.help_text }}</span></p>

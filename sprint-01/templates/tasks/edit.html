@@ -2,7 +2,12 @@
 
 {% block content %}
 <form action="{% url task_edit task.id %}" method="post">{% csrf_token %}
-	{{ form.as_p }}
+	<p><label for="id_title">{{ form.title.label }}:</label>{{ form.title }}</p>
+	<p><label for="id_description">{{ form.description.label }}:</label><textarea id="id_description" rows="10" cols="35" name="description">{{ form.description.value }}</textarea></p>
+	<p><label for="id_priority">{{ form.priority.label }}:</label>{{ form.priority }}</p>
+	<p><label for="id_due_to">{{ form.due_to.label }}:</label><input min="{% now "Y-m-d" %}" type="date" {% if form.due_to.value %}value="{{ form.due_to.value|date:"Y-m-d" }}"{% endif %} name="due_to" id="id_due_to"></p>
+	<p><label for="id_collaborators">{{ form.collaborators.label }}:</label>{{ form.collaborators }}<span class="helptext">{{ form.collaborators.help_text }}</span></p>
+	<p><label for="id_is_done">{{ form.is_done.label }}:</label>{{ form.is_done }}</p>
 	<input type="submit">
 </form>
 {% endblock content %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block submenu %}
+<a href="{% url task_edit task.id %}">Edit this task</a>
+{% endblock submenu %}
+
+{% block content %}
+<div class="date-line">created at {{ task.created_at }} by <strong>{{ task.created_by }}</strong></div>
+<h2>{{ task.title }}</h2>
+<div class="due_to_box">
+	{% if task.due_to %}
+		{% if task.due_to|timeuntil != "0 minutes" %}
+			<span class="due_to" title="{{ task.due_to }}">in {{ task.due_to|timeuntil }}</span>
+		{% else %}
+			<span class="due_to past" title="{{ task.due_to }}">{{ task.due_to|timesince }} ago</span>
+		{% endif %}
+	{% endif %}
+</div>
+<div class="detail">
+	<h3>Content</h3>
+	<p>{{ task.description|linebreaks }}</p>
+	{% if task.due_to %}
+	<h3>Due to</h3>
+	<p>{{ task.due_to }}</p>
+	{% endif %}
+	{% if task.collaborators.all %}
+	<div>
+		<h3>Collaborators</h3>
+		<ul>
+		{% for c in task.collaborators.all %}
+			<li>{{ c }}</li>
+		{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+	<h3>Priority: <span class="priority-{{ task.priority }}">{{ task.get_priority_display }}</span></h3>
+</div>
+{% endblock content %}

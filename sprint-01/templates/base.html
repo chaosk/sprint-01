@@ -40,7 +40,7 @@
 		<section id="messages">
 			{% for message in messages %}
 			<div{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-				<p>{{ message|safe }}</p>
+				{{ message|safe }}
 			</div>
 			{% endfor %}
 		</section>
@@ -50,7 +50,7 @@
 			{% block content %}{% endblock content %}
 		</div>
 
-		<footer>2011</footer>
+		<footer>&copy; 2011 · <a href="https://github.com/chaosk/sprint-01">github</a></footer>
 
 	</div>
 

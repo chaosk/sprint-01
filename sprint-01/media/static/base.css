@@ -1,20 +1,29 @@
 body {
+	background-color: #333;
 	font-family: 'Droid Sans', sans-serif;
 	font-size: 13px;
 }
 
 a {
-	color: #c4a000;
+	color: #aed180;
 	text-decoration: inherit;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
 }
 
-h1, h2 {
+a:hover {
+	color: #ffe3a3;
+}
+
+h1, h2, h3 {
 	font-family: 'Droid Serif', serif;
 	font-weight: normal;
 	margin: 0;
 }
 
 h1 {
+	color: #ffe3a3;
 	font-size: 48px;
 }
 
@@ -35,7 +44,7 @@ footer {
 }
 
 form {
-	background: #eed;
+	background: #ffe3a3;
 	text-align: right;
 	width: 50%;
 	padding: 20px;
@@ -72,10 +81,8 @@ form {
 }
 
 .userbox {
-	background: #eed;
+	color: #fff;
 	padding: 10px;
-	border-bottom-right-radius: 10px;
-	border-bottom-left-radius: 10px;
 	position: fixed;
 	top: 0;
 	right: 50px;
@@ -85,6 +92,87 @@ form {
 		font-weight: bold;
 	}
 
-#content {
-	padding: 20px;
+.tasks {
+	list-style-type: none;
+	padding: 0;
 }
+
+	.tasks li {
+		border-bottom: thin solid #fffee6;
+		line-height: 16px;
+		vertical-align: top;
+		padding: 5px 20px;
+		clear: both;
+	}
+
+		.tasks li a {
+			color: inherit;
+		}
+
+		.tasks li span {
+			vertical-align: inherit;
+		}
+
+		.tasks li span.title {
+			font-weight: bold;
+		}
+
+		.tasks li span.desc {
+			color: inherit;
+			font-size: 11px;
+			opacity: 0.5;
+		}
+
+		.due_to_box span.due_to,
+		.tasks li span.due_to {
+			font-size: 11px;
+			margin-top: 2px;
+			float: right;
+		}
+
+		.due_to_box span.due_to.past,
+		.tasks li span.due_to.past {
+			color: #c00;
+			font-weight: bold;
+		}
+
+		.tasks li img {
+			margin-left: 50px;
+			float: right;
+		}
+
+	.tasks li:hover {
+		border-bottom: thin solid;
+	}
+
+.priority-1 { color: #ccc; }
+.priority-2 { color: #777; }
+.priority-3 { color: #333; }
+.priority-4 { color: #c00; }
+.priority-5 { color: #f00; }
+
+.date-line {
+	float: right;
+}
+
+.detail {
+	margin-top: 20px;
+}
+
+	.detail p {
+		margin-left: 20px;
+	}
+
+#content {
+	background-color: #fffee6;
+}
+
+#content,
+#messages .success {
+	padding: 20px;
+	margin: 20px 0;
+}
+
+	#messages .success {
+		background: #aed180;
+	}
